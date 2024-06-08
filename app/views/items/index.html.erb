@@ -1,0 +1,24 @@
+<div class="header">
+  <div class="header-content">
+    <div class="header-item">
+      <i class="fas fa-store header-icon"></i>
+    </div>
+    <h1>Inventory</h1>
+  </div>
+</div>
+
+<%= link_to 'New Item', new_item_path, class: 'btn btn-primary' %>
+<br></br>
+<div class="inventory-list">
+  <% @items.each do |item| %>
+    <div class="inventory-item">
+      <h2><%= link_to item.name, item_path(item) %></h2>
+      <div class="item-actions">
+        <%= link_to 'Edit', edit_item_path(item), class: 'btn btn-secondary' %>
+        <%= form_with(url: item_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: 'inline-form') do %>
+          <%= submit_tag 'Destroy', class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
